@@ -136,16 +136,6 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
         Frame frame = arFragment.getArSceneView().getArFrame();
         Log.d("API123", "onUpdateframe... current anchor node " + (currentAnchorNode == null));
         
-        // Creating Anchor.
-        Anchor anchor = hitResult.createAnchor();
-        AnchorNode anchorNode = new AnchorNode(anchor);
-        anchorNode.setParent(arFragment.getArSceneView().getScene());
-        
-        clearAnchor();
-        
-        currentAnchor = anchor;
-        currentAnchorNode = anchorNode;
-        
         if (currentAnchorNode != null) {
             Pose objectPose = currentAnchor.getPose();
             Pose cameraPose = frame.getCamera().getPose();
@@ -171,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements Scene.OnUpdateLis
                     Log.i("key4", "distance = " + distanceString);
                     tvDistance.setText("Distance: " + distanceString + " m.");
                     //aux=0;
+                    System.arraycopy(modelMatrix, 0, modelMatrixAnt, 0, 16);
                 }
             }
             /*
